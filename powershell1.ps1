@@ -1,14 +1,10 @@
-$hookUrl = "your hook url goes here"
-$content = @"
-You can enter your message content here.
+$uri = "https://discord.com/api/webhooks/1109406458925301820/b3hYIw5zfxg1MwGsKtR72rv9M_1GnpRBeD2FOmx29FsQQSNbQebuPWSI4bMsEdrqtUUL"
 
-With a here-string, new lines are included as well!
+$var = "1"
 
-Enjoy.
-"@
-payload = [PSCustomObject]@{
+$hash = @{ "content" = "@everyone"; }
 
-    content = $content
+$JSON = $hash | convertto-json
 
-}
-Invoke-RestMethod -Uri $hookUrl -Method Post -Body ($payload | ConvertTo-Json)
+Invoke-WebRequest -uri $uri -Method POST -Body $JSON -Headers @{'Content-Type' = 'application/json'} 
+Write-Host "Spamming..."
